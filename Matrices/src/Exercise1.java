@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Main {
+public class Exercise1 {
     public static int[][] create_and_fill_matrix (int rows, int columns) {
         int[][] matrix = new int[rows][columns];
         for (int i = 0; i < matrix.length; i++) {
