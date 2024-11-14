@@ -48,7 +48,5 @@ public class Exercise4 {
         convert_matrix(matrix);
         System.out.print("Matrix after convert: \n");
         print_matrix(matrix);
-
-        convert_matrix(matrix);
     }
 }
