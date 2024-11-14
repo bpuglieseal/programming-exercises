@@ -13,10 +13,14 @@ public class Exercise4 {
     public static void convert_matrix (int[][] matrix) {
         int aux;
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = i + 1; j < matrix.length; j++) {
-                aux = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = aux;
+            for (int j = i; j < matrix.length; j++) {
+                if (j == i && matrix[i][j] < 0) {
+                    matrix[i][j] = 0;
+                } else if (j != i) {
+                    aux = matrix[i][j];
+                    matrix[i][j] = matrix[j][i];
+                    matrix[j][i] = aux;
+                }
             }
         }
     }
@@ -37,6 +41,7 @@ public class Exercise4 {
             }
         }
 
+        System.out.print("\n------------------\n");
         System.out.print("Matrix before convert: \n");
         print_matrix(matrix);
         System.out.print("------------------\n");
