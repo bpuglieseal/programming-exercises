@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Arrays/Arrays.iml" filepath="$PROJECT_DIR$/Arrays/Arrays.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ejercicios Estructuras Iterativas/Ejercicios Estructuras Iterativas.iml" filepath="$PROJECT_DIR$/Ejercicios Estructuras Iterativas/Ejercicios Estructuras Iterativas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ejercicios Variables y Condicionales/Ejercicios Variables y Condicionales.iml" filepath="$PROJECT_DIR$/Ejercicios Variables y Condicionales/Ejercicios Variables y Condicionales.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Funciones/Funciones.iml" filepath="$PROJECT_DIR$/Funciones/Funciones.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hackerrank/Hackerrank.iml" filepath="$PROJECT_DIR$/Hackerrank/Hackerrank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Matrices/Matrices.iml" filepath="$PROJECT_DIR$/Matrices/Matrices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/POO/POO.iml" filepath="$PROJECT_DIR$/POO/POO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Programame/Programame.iml" filepath="$PROJECT_DIR$/Programame/Programame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/programming-exercises.iml" filepath="$PROJECT_DIR$/.idea/programming-exercises.iml" />
+    </modules>
+  </component>
+</project>

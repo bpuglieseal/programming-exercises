@@ -1,20 +1,35 @@
 package Excercise9;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class BankAccount {
     private double balance;
-    private String holder;
+    private final Person holder;
+    private boolean negativeBalance;
+    private List<Transaction> transactions;
 
-    BankAccount(String holder) {
+    BankAccount(Person holder) {
         this.holder = holder;
         this.balance = 0f;
+        this.negativeBalance = false;
+        this.transactions = new ArrayList<Transaction>();
     }
 
-    BankAccount(String holder, double balance) {
+    BankAccount(Person holder, double balance) {
         this.holder = holder;
         this.balance = balance;
+        this.negativeBalance = balance < 0;
+        this.transactions = new ArrayList<Transaction>();
     }
 
-    public void deposit (double amount) {
+    public void deposit(double amount) {
+        final Transaction t = new Transaction(TransactionType.DEPOSIT, amount);
+        this.addTransaction(t);
+
         this.balance += amount;
     }
 
@@ -22,21 +37,42 @@ public class BankAccount {
         return balance;
     }
 
-    public String getHolder() {
+    public Person getHolder() {
         return holder;
     }
 
-    public double withdraw (double amount) throws BankAccountWithdrawException {
-        if ((this.balance - amount) < 0) {
-            throw new BankAccountWithdrawException("You don't have enough money");
+    public double withdraw(double amount) {
+        final Transaction t = new Transaction(TransactionType.WITHDRAW, amount);
+        this.addTransaction(t);
+
+        if ((this.balance - amount) < 0 && this.balance < 0) {
+            this.negativeBalance = true;
         }
 
         this.balance -= amount;
         return amount;
     }
 
-    public void show () {
-        System.out.format("Bank Account Holder: %s\n", this.holder);
-        System.out.format("Bank Account Balance: %f\n", this.balance);
+    public void show() {
+        DecimalFormatSymbols symbol = new DecimalFormatSymbols();
+        symbol.setDecimalSeparator('.');
+        DecimalFormat formatter = new DecimalFormat("##.##", symbol);
+
+        System.out.format("Bank Account Holder: %s\n", this.holder.getName());
+        System.out.format("Bank Account Balance: %s\n", formatter.format(this.balance));
+    }
+
+    public void addTransaction(Transaction t) {
+        this.transactions.add(t);
+    }
+
+    public void printTransactions() {
+        DecimalFormatSymbols symbol = new DecimalFormatSymbols();
+        symbol.setDecimalSeparator('.');
+        DecimalFormat formatter = new DecimalFormat("##.##", symbol);
+
+        this.transactions.forEach(t -> {
+            System.out.format("%s: %s\n", Transaction.getTransactionTypeVerbose(t.getType()), formatter.format(t.getAmount()));
+        });
     }
 }
