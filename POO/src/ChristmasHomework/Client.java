@@ -21,7 +21,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return String.format("Nombre: %s | Identity Card: %s | Level: %s", this.name, this.identityCard, Client.levelToString(this.level));
+        return String.format("Name: %s | Identity Card: %s | Level: %s", this.name, this.identityCard, Client.levelToString(this.level));
     }
 
     public double getDiscount(double price) {
@@ -62,5 +62,9 @@ public class Client {
 
     public String getIdentityCard() {
         return identityCard;
+    }
+
+    public void setLevel(MemberLevel level) {
+        this.level = level;
     }
 }

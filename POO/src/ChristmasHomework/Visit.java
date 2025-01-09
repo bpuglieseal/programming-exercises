@@ -31,4 +31,8 @@ public class Visit {
 
         return String.format("Date: %s | Cost: %s | Client: %s", this.date.toString(), formatter.format(this.cost), this.client.toString());
     }
+
+    public Client getClient() {
+        return client;
+    }
 }
