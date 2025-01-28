@@ -1,8 +1,5 @@
 package Excercise3;
 
-import java.util.Calendar;
-import java.util.Date;
-
 public class Movie {
     private String name;
     private int duration;
@@ -33,11 +30,6 @@ public class Movie {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof String) {
-            String name = (String) obj;
-
-        }
-
         if (!(obj instanceof Movie movie)) return false;
         return movie.getName().equalsIgnoreCase(this.name) && (Math.abs(movie.getDuration() - this.duration) >= 0) && Math.abs(movie.getDuration() - this.duration) <= 5;
     }
