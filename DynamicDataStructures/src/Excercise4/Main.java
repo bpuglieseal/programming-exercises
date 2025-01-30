@@ -27,18 +27,39 @@ public class Main {
         phones2.add("123456785");
         phones2.add("123456783");
 
-        System.out.println("Agregando un usuario a la agenda...");
-        agenda.addEntry(name, phones, false);
-        System.out.println("Agregando un usuario a la agenda...");
-        agenda.addEntry(name1, phones1, false);
-        System.out.println("Agregando un usuario a la agenda...");
-        agenda.addEntry(name2, phones2, false);
+        ArrayList<String> phones3 = new ArrayList<>();
+        phones3.add("123456781");
+        phones3.add("123456782");
+        phones3.add("123456783");
+        phones3.add("123456784");
+        phones3.add("123456785");
+        phones3.add("123456786");
 
+        System.out.println("Agregando un primer registro a la agenda: Agregado");
+        System.out.println("----------------------------------------");
+        agenda.addEntry(name, phones);
+        System.out.println("Agregando un segundo registro a la agenda: Agregado");
+        System.out.println("----------------------------------------");
+        agenda.addEntry(name1, phones1);
+        System.out.print("Agregando un tercero registro a la agenda: ");
+        agenda.addEntry(name2, phones2);
+        System.out.println("----------------------------------------");
+
+        System.out.println("Registros disponibles en la agenda: ");
         agenda.display();
-        System.out.println("Numero de telefonos de Alberto: ");
+        System.out.println("----------------------------------------");
+        System.out.println("Accediento a los numeros de telefono de Alberto (No Existe): ");
         System.out.println(agenda.searchName("Alberto"));
+        System.out.println("----------------------------------------");
         System.out.println("Numero de telefonos de Gabriel: ");
         System.out.println(agenda.searchName("Gabriel"));
+        System.out.println("----------------------------------------");
         System.out.println("Cantidad de personas con el numero 123456789: " + agenda.numberOfPhones("123456789"));
+        System.out.println("----------------------------------------");
+        System.out.println("Actualizando una entrada que ya existe: ");
+        agenda.addEntry(name, phones3);
+        System.out.println("----------------------------------------");
+        System.out.println("Registros despues de actualizar: ");
+        agenda.display();
     }
 }

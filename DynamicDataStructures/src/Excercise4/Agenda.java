@@ -2,7 +2,7 @@ package Excercise4;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.Scanner;
 
 public class Agenda {
     private HashMap<String, ArrayList<String>> entries;
@@ -17,12 +17,8 @@ public class Agenda {
         return entries;
     }
 
-    public boolean isInAgenda (String name) {
-        return this.entries.containsKey(name);
-    }
-
     public String searchName (String name) {
-        if (!this.isInAgenda(name)) {
+        if (!this.entries.containsKey(name)) {
             return String.format("%s no esta en la agenda", name);
         }
 
@@ -35,34 +31,55 @@ public class Agenda {
         return stringBuilder.toString();
     }
 
-    public void addEntry (String name, ArrayList<String> phoneNumbers, boolean replace) {
+    public void addEntry (String name, ArrayList<String> phoneNumbers) {
         if (this.entries.containsKey(name) && this.entries.size() <= this.maxEntries) {
-            ArrayList<String> phones = this.entries.get(name);
+            Scanner sc = new Scanner(System.in);
 
-            if (replace) {
-                this.entries.put(name, phoneNumbers);
-                return;
-            }
-
-            Iterator<String> it = phones.iterator();
-            System.out.println("Your agenda contains these phone numbers for: ");
+            StringBuilder stringBuilder = new StringBuilder();
+            System.out.println("Tu agenda contiene estos números para: ");
             System.out.format("+ %s\n", name);
-            while (it.hasNext()) {
-                System.out.format("- %s\n", it.next());
+            ArrayList<String> phones = this.entries.get(name);
+            for (String phone : phones) {
+                stringBuilder.append(phone).append(" ");
             }
-        } else if (!this.entries.containsKey(name) && this.entries.size() < this.maxEntries) {
+            System.out.format("- Numeros: %s\n", stringBuilder.toString());
+            stringBuilder.setLength(0);
+            for (String phone : phoneNumbers) {
+                stringBuilder.append(phone).append(" ");
+            }
+            System.out.format("- ¿Quieres actualizar por los siguientes numeros?: %s\n", stringBuilder.toString());
+            System.out.print("- Digite respuesta (Si / No): ");
+            String option = sc.nextLine();
+
+            switch (option.toLowerCase()) {
+                case "si": {
+                    this.entries.put(name, phoneNumbers);
+                    System.out.println("Registros Actualizados.");
+                    break;
+                }
+                case "no": {
+                    System.out.println("Registros No Fueron Actualizados.");
+                    break;
+                }
+                default: {
+                    System.out.println("Opcion Inválida.");
+                    break;
+                }
+            }
+
+        } else if (this.entries.size() < this.maxEntries) {
             this.entries.put(name, phoneNumbers);
         } else {
-            System.out.println("Full Agenda");
+            System.out.println("No se puede agregar (Full Agenda)");
         }
     }
 
     public int numberOfPhones (String numberPhone) {
-        int c = 0;
+        int count = 0;
         for (ArrayList<String> phones : this.entries.values()) {
-            if (phones.contains(numberPhone)) c++;
+            if (phones.contains(numberPhone)) count++;
         }
-        return c;
+       return count;
     }
 
     public void display () {
