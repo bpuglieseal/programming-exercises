@@ -1,9 +1,7 @@
 package Excercise3;
 
-import java.lang.management.MonitorInfo;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 
 public class Cinema {
     private String name;
@@ -80,31 +78,34 @@ public class Cinema {
         this.current++;
     }
 
-    public boolean removeMovie(String movieName) {
+    public void removeMovie(String movieName) {
         for (int i = 0; i < this.movies.size(); i++) {
             if (this.movies.get(i).getName().toLowerCase().startsWith(movieName.toLowerCase())) {
                 this.movies.remove(i);
                 for (int j = 0; j < this.limit; j++) {
                     if (this.rooms[j] instanceof Integer && ((Integer) this.rooms[j]).compareTo(i) == 0) {
                         this.rooms[j] = "?????";
-                        System.out.println(Arrays.toString(this.rooms));
-                        System.out.println(this.movies);
-                        return true;
+                    } else if (this.rooms[j] instanceof Integer && ((Integer) this.rooms[j]).compareTo(i) > 0) {
+                        this.rooms[j] = (Integer) this.rooms[j] - 1;
                     }
                 }
             }
         }
-        return false;
     }
 
     public void display () {
         for (int i = 0; i < this.limit; i++) {
-            if (this.rooms[i] instanceof String) {
-                System.out.println(this.rooms[i]);
-            } else if (this.rooms[i] instanceof Integer) {
+            if (this.rooms[i] instanceof Integer) {
                 final Movie movie = this.movies.get((Integer) this.rooms[i]);
                 System.out.format("%s - Room %d\n", movie.getName(), i + 1);
             }
         }
+    }
+
+    public void resetCinema() {
+        this.movies.clear();
+        this.rooms = new Object[this.rooms.length];
+
+        Arrays.fill(this.rooms, "?????");
     }
 }

@@ -12,6 +12,6 @@ public class Main {
         cinema.addMovie(superman, 2);
         cinema.addMovie(spiderman, 3);
         cinema.addMovie(thor);
-        cinema.removeMovie("superman");
+        cinema.display();
     }
 }
