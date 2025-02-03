@@ -39,22 +39,12 @@ public class Cinema {
     }
 
     public void addMovie(Movie movie, int roomIndex) {
-        if (this.movies.contains(movie)) {
-            return;
+        if (!(this.movies.contains(movie)) && !(this.rooms[roomIndex - 1] instanceof Integer) && !(this.fill == this.limit)) {
+            this.movies.add(movie);
+            int index = this.movies.indexOf(movie);
+            this.rooms[roomIndex - 1] = index;
+            this.fill++;
         }
-
-        if (this.rooms[roomIndex - 1] instanceof Integer) {
-            return;
-        }
-
-        if (this.fill == this.limit) {
-            return;
-        }
-
-        this.movies.add(movie);
-        int index = this.movies.indexOf(movie);
-        this.rooms[roomIndex - 1] = index;
-        this.fill++;
     }
 
     public void addMovie(Movie movie) {
@@ -81,7 +71,7 @@ public class Cinema {
                     if (this.rooms[j] instanceof Integer && ((Integer) this.rooms[j]).compareTo(i) == 0) {
                         this.rooms[j] = "?????";
                     } else if (this.rooms[j] instanceof Integer && ((Integer) this.rooms[j]).compareTo(i) > 0) {
-                        this.rooms[j] = (Integer) this.rooms[j] - 1;
+                        this.rooms[j] = (Object) ((Integer) this.rooms[j] - 1);
                     }
                 }
             }
