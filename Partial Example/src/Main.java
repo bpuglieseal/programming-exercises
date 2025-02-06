@@ -189,6 +189,7 @@ public class Main {
                 }
                 case 6: {
                     System.out.println("Bye Bye!");
+                    break;
                 }
             }
 
